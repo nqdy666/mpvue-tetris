@@ -1,7 +1,7 @@
 <template>
   <div class="next">
-    <div v-for="(item,index) in block">
-      <b :class="e ? 'c' : ''" v-for="(e,k2) in item" />
+    <div v-for="(item, index) in block" :key="index">
+      <b v-for="(e, itemIndex) in item" :key="itemIndex" :class="e ? 'c' : ''"  />
     </div>
   </div>
 </template>

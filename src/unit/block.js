@@ -2,7 +2,7 @@ import { List, fromJS } from 'immutable'
 import { blockShape, origin } from './const'
 
 class Block {
-  constructor(option) {
+  constructor (option) {
     this.type = option.type
 
     if (!option.rotateIndex) {
@@ -53,7 +53,7 @@ class Block {
       this.xy = option.xy
     }
   }
-  rotate() {
+  rotate () {
     const shape = fromJS(this.shape)
     let result = List([])
     shape.forEach(m =>
@@ -81,7 +81,7 @@ class Block {
       timeStamp: this.timeStamp
     }
   }
-  fall(n = 1) {
+  fall (n = 1) {
     return {
       shape: this.shape,
       type: this.type,
@@ -90,7 +90,7 @@ class Block {
       timeStamp: Date.now()
     }
   }
-  right() {
+  right () {
     return {
       shape: this.shape,
       type: this.type,
@@ -99,7 +99,7 @@ class Block {
       timeStamp: this.timeStamp
     }
   }
-  left() {
+  left () {
     return {
       shape: this.shape,
       type: this.type,

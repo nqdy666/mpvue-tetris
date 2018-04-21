@@ -13,6 +13,18 @@ export default {
       deep: true
     }
   },
+  computed: {
+    matrix () {
+      let matrix = []
+      if (this.isOver) {
+        matrix = this.overState
+      } else {
+        matrix = this.getResult()
+      }
+      return matrix = matrix.toJS() || []
+    }
+  },
+  /*
   render() {
     let matrix
     if (this.isOver) {
@@ -33,6 +45,7 @@ export default {
       </div>
     )
   },
+  */
   data() {
     return {
       clearLines: false,

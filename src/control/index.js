@@ -39,5 +39,5 @@ const keyUp = e => {
   todo[type].up(store)
 }
 
-document.addEventListener('keydown', keyDown, true)
-document.addEventListener('keyup', keyUp, true)
+// document.addEventListener('keydown', keyDown, true)
+// document.addEventListener('keyup', keyUp, true)

@@ -1,10 +1,8 @@
 import { blockType, StorageKey } from './const'
 import { fromJS, List } from 'immutable'
+import btoa from 'btoa'
 const hiddenProperty = (() => {
-  // document[hiddenProperty] 可以判断页面是否失焦
-  let names = ['hidden', 'webkitHidden', 'mozHidden', 'msHidden']
-  names = names.filter(e => e in document)
-  return names.length > 0 ? names[0] : false
+  return false
 })()
 const unit = {
   getNextType() {
@@ -76,21 +74,18 @@ const unit = {
       }
       data = JSON.stringify(data)
       data = encodeURIComponent(data)
-      if (window.btoa) {
+      if (btoa) {
         data = btoa(data)
       }
-      window.localStorage.setItem(StorageKey, data)
+      try {
+        wx.setStorageSync(StorageKey, data)
+      } catch (e) {
+      }
+      // window.localStorage.setItem(StorageKey, data)
     })
   },
   isMobile() {
-    // 判断是否为移动端
-    const ua = navigator.userAgent
-    const android = /Android (\d+\.\d+)/.test(ua)
-    const iphone = ua.indexOf('iPhone') > -1
-    const ipod = ua.indexOf('iPod') > -1
-    const ipad = ua.indexOf('iPad') > -1
-    const nokiaN = ua.indexOf('NokiaN') > -1
-    return android || iphone || ipod || ipad || nokiaN
+    return true
   },
   visibilityChangeEvent: (() => {
     if (!hiddenProperty) {
@@ -99,11 +94,7 @@ const unit = {
     return hiddenProperty.replace(/hidden/i, 'visibilitychange') // 如果属性有前缀, 相应的事件也有前缀
   })(),
   isFocus: () => {
-    if (!hiddenProperty) {
-      // 如果不存在该特性, 认为一直聚焦
-      return true
-    }
-    return !document[hiddenProperty]
+    return true
   }
 }
 export const {

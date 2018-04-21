@@ -12,16 +12,10 @@ export default {
     github: () => i18n.github[lan],
     QRCode: () => i18n.QRCode[lan],
     QRTitle: () => i18n.QRNotice[lan],
-    QRSrc: () =>
-      window.location.protocol + '//' + window.location.host +
-      '/static/qr.png'
+    QRSrc: () => ''
   },
   mounted() {
-    window.addEventListener('resize', this.resize.bind(this), true)
   },
   methods: {
-    resize() {
-      this.isMobile = isMobile()
-    }
   }
 }

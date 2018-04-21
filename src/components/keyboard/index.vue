@@ -12,6 +12,8 @@
           arrow="translate(0, 63px)"
           :position="true"
           :active="keyboard['rotate']"
+          @m_touchstart="handleTouchStart('rotate')"
+          @m_touchend="handleTouchEnd('rotate')"
           ref="dom_rotate"
         />
         <vbutton
@@ -22,6 +24,8 @@
           :label="labelDown"
           arrow="translate(0,-71px) rotate(180deg)"
           :active="keyboard['down']"
+          @m_touchstart="handleTouchStart('down')"
+          @m_touchend="handleTouchEnd('down')"
           ref="dom_down"
         />
         <vbutton
@@ -32,6 +36,8 @@
           :label="labelLeft"
           arrow="translate(60px, -12px) rotate(270deg)"
           :active="keyboard['left']"
+          @m_touchstart="handleTouchStart('left')"
+          @m_touchend="handleTouchEnd('left')"
           ref="dom_left"
         />
         <vbutton
@@ -42,6 +48,8 @@
           :label="labelRight"
           arrow="translate(-60px, -12px) rotate(90deg)"
           :active="keyboard['right']"
+          @m_touchstart="handleTouchStart('right')"
+          @m_touchend="handleTouchEnd('right')"
           ref="dom_right"
         />
         <vbutton
@@ -51,6 +59,8 @@
           :left="52"
           :label="labelDropSpace"
           :active="keyboard['drop']"
+          @m_touchstart="handleTouchStart('space')"
+          @m_touchend="handleTouchEnd('space')"
           ref="dom_space"
         />
         <vbutton
@@ -60,6 +70,8 @@
           :left="196"
           :label="labelResetR"
           :active="keyboard['reset']"
+          @m_touchstart="handleTouchStart('r')"
+          @m_touchend="handleTouchEnd('r')"
           ref="dom_r"
         />
         <vbutton
@@ -69,6 +81,8 @@
           :left="106"
           :label="labelSoundS"
           :active="keyboard['music']"
+          @m_touchstart="handleTouchStart('s')"
+          @m_touchend="handleTouchEnd('s')"
           ref="dom_s"
         />
         <vbutton
@@ -78,6 +92,8 @@
           :left="16"
           :label="labelPauseP"
           :active="keyboard['pause']"
+          @m_touchstart="handleTouchStart('p')"
+          @m_touchend="handleTouchEnd('p')"
           ref="dom_p"
         />
       </div>

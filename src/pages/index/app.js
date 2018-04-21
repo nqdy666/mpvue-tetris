@@ -1,30 +1,34 @@
-import Decorate from './components/decorate/index.vue'
-import Guide from './components/guide/index.vue'
-import Next from './components/next/index.vue'
-import Music from './components/music/index.vue'
-import Pause from './components/pause/index.vue'
-import Number from './components/number/index.vue'
-import Point from './components/point/index.vue'
-import Keyboard from './components/keyboard/index.vue'
-import Logo from './components/logo/index.vue'
-import { List } from 'immutable'
-import Matrix from './components/matrix/index.vue'
+import Decorate from '@/components/decorate/index.vue'
+import Guide from '@/components/guide/index.vue'
+import Next from '@/components/next/index.vue'
+import Music from '@/components/music/index.vue'
+import Pause from '@/components/pause/index.vue'
+import Number from '@/components/number/index.vue'
+import Point from '@/components/point/index.vue'
+import Keyboard from '@/components/keyboard/index.vue'
+import Logo from '@/components/logo/index.vue'
+import Matrix from '@/components/matrix/index.vue'
 import { mapState } from 'vuex'
-import { transform, lastRecord, speeds, i18n, lan } from './unit/const'
-import { visibilityChangeEvent, isFocus } from './unit/'
-import states from './control/states'
+import { transform, lastRecord, speeds, i18n, lan } from '@/unit/const'
+import states from '@/control/states'
+import store from '@/vuex/store'
+
 export default {
-  mounted() {
-    this.render()
-    window.addEventListener('resize', this.resize.bind(this), true)
-  },
+  store,
   data() {
     return {
-      size: {},
-      w: document.documentElement.clientWidth,
-      h: document.documentElement.clientHeight,
+      paddingBottom: undefined,
+      paddingTop: undefined,
+      transform: undefined,
+      marginTop: undefined,
+      w: wx.getSystemInfoSync().windowWidth,
+      h: wx.getSystemInfoSync().windowHeight,
       filling: ''
     }
+  },
+  mounted() {
+    console.log(wx.getSystemInfoSync())
+    this.mRender()
   },
   components: {
     Decorate,
@@ -59,10 +63,10 @@ export default {
       'max',
       'reset',
       'drop'
-    ])
+    ]),
   },
   methods: {
-    render() {
+    mRender() {
       let filling = 0
       const size = (() => {
         const w = this.w
@@ -77,34 +81,21 @@ export default {
           filling = (h - 960 * scale) / scale / 3
           css = {
             'padding-top': Math.floor(filling) + 42 + 'px',
-            'padding-bottom': Math.floor(filling) + 'px',
+            'padding-bottom': Math.floor(filling) - 10 + 'px',
             'margin-top': Math.floor(-480 - filling * 1.5) + 'px'
           }
         }
         css[transform] = `scale(${scale})`
         return css
       })()
-      this.size = size
+      this.paddingBottom = size['padding-bottom']
+      this.paddingTop = size['padding-top']
+      this.marginTop = size['margin-top']
+      this.transform = size['transform']
       this.start()
       this.filling = filling
     },
-    resize() {
-      this.w = document.documentElement.clientWidth
-      this.h = document.documentElement.clientHeight
-      this.render()
-    },
     start() {
-      if (visibilityChangeEvent) {
-        // 将页面的焦点变换写入store
-        document.addEventListener(
-          visibilityChangeEvent,
-          () => {
-            states.focus(isFocus())
-          },
-          false
-        )
-      }
-
       if (lastRecord) {
         // 读取记录
         if (lastRecord.cur && !lastRecord.pause) {

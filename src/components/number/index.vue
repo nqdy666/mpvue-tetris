@@ -1,6 +1,6 @@
 <template>
   <div class="number">
-    <span v-for="(item,index) in data" :class="'bg s_'+item" />
+    <span v-for="(item,index) in data" :key="index" :class="'bg s_'+item" />
   </div>
 </template>
 
