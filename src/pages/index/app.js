@@ -12,6 +12,8 @@ import { transform, lastRecord, speeds, i18n, lan } from '@/unit/const'
 import states from '@/control/states'
 import store from '@/vuex/store'
 
+const { pixelRatio, windowWidth, windowHeight } = wx.getSystemInfoSync()
+
 export default {
   store,
   data() {
@@ -20,8 +22,8 @@ export default {
       paddingTop: undefined,
       transform: undefined,
       marginTop: undefined,
-      w: wx.getSystemInfoSync().windowWidth,
-      h: wx.getSystemInfoSync().windowHeight,
+      w: windowWidth,
+      h: windowHeight,
       filling: ''
     }
   },
@@ -76,11 +78,11 @@ export default {
           scale = h / 960
         } else {
           scale = w / 640
-          filling = (h - 960 * scale) / scale / 3
+          filling = (h - 960 * scale) / scale / pixelRatio
           css = {
             'padding-top': Math.floor(filling) + 42 + 'px',
-            'padding-bottom': Math.floor(filling) - 10 + 'px',
-            'margin-top': Math.floor(-480 - filling * 1.5) + 'px'
+            'padding-bottom': Math.floor(filling) - 0 + 'px',
+            'margin-top': Math.floor(-483 - filling * ratio) + 'px'
           }
         }
         css[transform] = `scale(${scale})`
