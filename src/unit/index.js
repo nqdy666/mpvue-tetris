@@ -77,10 +77,10 @@ const unit = {
       if (btoa) {
         data = btoa(data)
       }
-      try {
-        wx.setStorageSync(StorageKey, data)
-      } catch (e) {
-      }
+      wx.setStorage({
+        key: StorageKey,
+        data
+      })
       // window.localStorage.setItem(StorageKey, data)
     })
   },

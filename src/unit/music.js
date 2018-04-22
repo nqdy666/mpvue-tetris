@@ -18,7 +18,6 @@ export const music = {}
   context.src = 'https://nzijkk7pu.qnssl.com/Tetris-ZrQyi_JngQTdtxninMN1.mp3'
   // context.autoplay = true
   context.onError((res) => {
-    console.log(res)
     hasWebAudioAPI.data = false
   })
 

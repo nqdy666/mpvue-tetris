@@ -1,5 +1,4 @@
 import Decorate from '@/components/decorate/index.vue'
-import Guide from '@/components/guide/index.vue'
 import Next from '@/components/next/index.vue'
 import Music from '@/components/music/index.vue'
 import Pause from '@/components/pause/index.vue'
@@ -32,7 +31,6 @@ export default {
   },
   components: {
     Decorate,
-    Guide,
     Next,
     Music,
     Pause,
