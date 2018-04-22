@@ -12,14 +12,6 @@ export const music = {}
   if (!hasWebAudioAPI.data) {
     return
   }
-  const url = './static/music.mp3'
-  const context = wx.createInnerAudioContext()
-  // context.src = url
-  context.src = 'https://nzijkk7pu.qnssl.com/Tetris-ZrQyi_JngQTdtxninMN1.mp3'
-  // context.autoplay = true
-  context.onError((res) => {
-    hasWebAudioAPI.data = false
-  })
 
   function getSource () {
     const context = wx.createInnerAudioContext()
@@ -29,8 +21,9 @@ export const music = {}
         context.startTime = offset
         context.play()
         setTimeout(() => {
-          context.stop()
-        }, duration * 1000)
+          context.pause()
+          context.destroy()
+        }, (duration + 1) * 1000)
       }
     }
   }
@@ -54,7 +47,7 @@ export const music = {}
     if (!store.state.music) {
       return
     }
-    getSource().start(0, 0, 0.7675)
+    // getSource().start(0, 0, 0.7675)
   }
 
   music.fall = () => {
@@ -62,7 +55,7 @@ export const music = {}
     if (!store.state.music) {
       return
     }
-    getSource().start(0, 1.2558, 0.3546)
+    // getSource().start(0, 1.2558, 0.3546)
   }
 
   music.gameover = () => {
@@ -78,7 +71,7 @@ export const music = {}
     if (!store.state.music) {
       return
     }
-    getSource().start(0, 2.2471, 0.0807)
+    // getSource().start(0, 2.2471, 0.0807)
   }
 
   music.move = () => {
@@ -86,6 +79,6 @@ export const music = {}
     if (!store.state.music) {
       return
     }
-    getSource().start(0, 2.9088, 0.1437)
+    // getSource().start(0, 2.9088, 0.1437)
   }
 })()
