@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import App from './App'
-import { i18n, lan } from './unit/const'
-
 Vue.config.productionTip = false
 App.mpType = 'app'
 
@@ -16,7 +14,7 @@ export default {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: i18n.title[lan],
+      navigationBarTitleText: '俄罗斯方块',
       navigationBarTextStyle: 'black'
     }
   }
